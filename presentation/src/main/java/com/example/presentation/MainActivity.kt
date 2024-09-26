@@ -1,4 +1,4 @@
-package com.example.clean_architecture_study
+package com.example.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

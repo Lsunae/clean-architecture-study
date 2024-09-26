@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "clean_architecture_study"
 include(":app")
+include(":data")
+include(":presentation")
+include(":domain")
