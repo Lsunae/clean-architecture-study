@@ -36,7 +36,7 @@ class NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(NetworkConfig.baseUrl)
+            .baseUrl(BookService.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
