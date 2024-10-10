@@ -17,6 +17,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
     @Provides
+    fun provideNetworkConfig(): NetworkConfig = NetworkConfig
+
+    @Provides
     fun provideNetworkInterceptor(networkConfig: NetworkConfig): NetworkInterceptor =
         NetworkInterceptor(networkConfig)
 
