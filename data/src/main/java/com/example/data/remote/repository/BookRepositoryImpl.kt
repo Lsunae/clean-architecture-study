@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(private val dataSource: BookDataSource) :
     BookRepository {
-    override suspend fun searchBook() {
-        return dataSource.getSearchBooks()
+    override suspend fun searchBook(query: String, display: Int) {
+
     }
 }
