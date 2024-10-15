@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Rss(
     @SerializedName("channel")
-    val rss: Channel?
+    val channel: Channel?
 )

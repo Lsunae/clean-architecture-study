@@ -6,5 +6,5 @@ data class Channel(
     @SerializedName("total")
     val total: String?,
     @SerializedName("item")
-    val rss: MutableList<BookItem>?
+    val item: MutableList<BookItem>?
 )
