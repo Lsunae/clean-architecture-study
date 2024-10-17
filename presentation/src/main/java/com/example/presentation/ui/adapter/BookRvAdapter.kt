@@ -4,13 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.model.Book
+import com.example.presentation.R
 import com.example.presentation.databinding.ItemBookBinding
+import com.example.presentation.util.glideImageSet
 
 class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
-    private var items = mutableListOf<String>()
+    private var items = arrayListOf<Book>()
 
-    fun addItems(items: List<String>) {
+    fun addItems(items: ArrayList<Book>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -59,8 +62,14 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class ImageHolder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: String) {
+        fun bind(item: Book) {
+            binding.apply {
+                if (!item.image.isNullOrEmpty()) ivBook.glideImageSet(item.image!!)
+                else ivBook.setImageResource(R.drawable.ic_error)
 
+                tvTitle.text = item.title
+                tvAuthor.text = item.author
+            }
         }
     }
 }
