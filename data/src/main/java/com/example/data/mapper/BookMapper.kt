@@ -1,6 +1,5 @@
 package com.example.data.mapper
 
-import android.util.Log
 import com.example.data.model.SearchResultResponse
 import com.example.domain.model.Book
 
