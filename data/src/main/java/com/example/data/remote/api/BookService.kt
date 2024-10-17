@@ -8,10 +8,10 @@ import retrofit2.http.Query
 interface BookService {
 
     companion object {
-        const val BASE_URL = "https://openapi.naver.com/v1/search"
+        const val BASE_URL = "https://openapi.naver.com/v1/search/"
     }
 
-    @GET("/book.json")
+    @GET("book.json")
     suspend fun searchBook(
         @Query("query") query: String,
         @Query("display") display: Int
