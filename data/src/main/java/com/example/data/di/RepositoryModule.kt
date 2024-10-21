@@ -1,7 +1,7 @@
 package com.example.data.di
 
 import com.example.data.repository.BookRepositoryImpl
-import com.example.data.source.remote.BookDataSource
+import com.example.data.source.remote.BookRemoteDataSource
 import com.example.domain.repository.BookRepository
 import dagger.Module
 import dagger.Provides
@@ -15,8 +15,8 @@ class RepositoryModule {
     @Provides
     @ViewModelScoped
     fun provideBookRepository(
-        bookDataSource: BookDataSource
+        bookRemoteDataSource: BookRemoteDataSource
     ): BookRepository {
-        return BookRepositoryImpl(bookDataSource)
+        return BookRepositoryImpl(bookRemoteDataSource)
     }
 }

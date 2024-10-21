@@ -1,8 +1,8 @@
 package com.example.data.di
 
 import com.example.data.api.BookService
-import com.example.data.source.remote.BookDataSource
-import com.example.data.source.remote.BookDataSourceImpl
+import com.example.data.source.remote.BookRemoteDataSource
+import com.example.data.source.remote.BookRemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,7 @@ class DataSourceModule {
     @Singleton
     fun provideMainDataSource(
         bookService: BookService
-    ): BookDataSource {
-        return BookDataSourceImpl(bookService)
+    ): BookRemoteDataSource {
+        return BookRemoteDataSourceImpl(bookService)
     }
 }

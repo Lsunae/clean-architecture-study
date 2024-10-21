@@ -2,14 +2,14 @@ package com.example.data.repository
 
 import android.util.Log
 import com.example.data.mapper.BookMapper
-import com.example.data.source.remote.BookDataSource
+import com.example.data.source.remote.BookRemoteDataSource
 import com.example.domain.model.Book
 import com.example.domain.repository.BookRepository
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class BookRepositoryImpl @Inject constructor(private val dataSource: BookDataSource) :
+class BookRepositoryImpl @Inject constructor(private val dataSource: BookRemoteDataSource) :
     BookRepository {
     override suspend fun searchBook(query: String, display: Int): ArrayList<Book>? {
         return try {
