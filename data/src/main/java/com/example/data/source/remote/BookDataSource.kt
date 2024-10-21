@@ -1,4 +1,4 @@
-package com.example.data.remote.source
+package com.example.data.source.remote
 
 import com.example.data.model.SearchResultResponse
 import retrofit2.Response

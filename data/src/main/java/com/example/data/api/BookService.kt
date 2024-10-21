@@ -1,4 +1,4 @@
-package com.example.data.remote.api
+package com.example.data.api
 
 import com.example.data.model.SearchResultResponse
 import retrofit2.Response

@@ -1,7 +1,7 @@
-package com.example.data.remote.source
+package com.example.data.source.remote
 
 import com.example.data.model.SearchResultResponse
-import com.example.data.remote.api.BookService
+import com.example.data.api.BookService
 import retrofit2.Response
 import javax.inject.Inject
 

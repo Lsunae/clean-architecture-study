@@ -1,8 +1,8 @@
-package com.example.data.remote.repository
+package com.example.data.repository
 
 import android.util.Log
 import com.example.data.mapper.BookMapper
-import com.example.data.remote.source.BookDataSource
+import com.example.data.source.remote.BookDataSource
 import com.example.domain.model.Book
 import com.example.domain.repository.BookRepository
 import retrofit2.HttpException

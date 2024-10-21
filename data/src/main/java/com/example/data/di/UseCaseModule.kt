@@ -1,7 +1,7 @@
 package com.example.data.di
 
 import com.example.domain.repository.BookRepository
-import com.example.domain.usecase.GetSearchBookUseCase
+import com.example.domain.usecase.search.GetSearchBookUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

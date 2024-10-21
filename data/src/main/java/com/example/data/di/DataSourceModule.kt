@@ -1,8 +1,8 @@
 package com.example.data.di
 
-import com.example.data.remote.api.BookService
-import com.example.data.remote.source.BookDataSource
-import com.example.data.remote.source.BookDataSourceImpl
+import com.example.data.api.BookService
+import com.example.data.source.remote.BookDataSource
+import com.example.data.source.remote.BookDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
