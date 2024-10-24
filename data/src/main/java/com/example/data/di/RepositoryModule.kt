@@ -1,8 +1,11 @@
 package com.example.data.di
 
-import com.example.data.remote.repository.BookRepositoryImpl
-import com.example.data.remote.source.BookDataSource
+import com.example.data.repository.BookRepositoryImpl
+import com.example.data.repository.LikeRepositoryImpl
+import com.example.data.source.local.LikeLocalDataSource
+import com.example.data.source.remote.BookRemoteDataSource
 import com.example.domain.repository.BookRepository
+import com.example.domain.repository.LikeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +18,16 @@ class RepositoryModule {
     @Provides
     @ViewModelScoped
     fun provideBookRepository(
-        bookDataSource: BookDataSource
+        bookRemoteDataSource: BookRemoteDataSource
     ): BookRepository {
-        return BookRepositoryImpl(bookDataSource)
+        return BookRepositoryImpl(bookRemoteDataSource)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideLikeRepository(
+        likeRemoteDataSource: LikeLocalDataSource
+    ): LikeRepository {
+        return LikeRepositoryImpl(likeRemoteDataSource)
     }
 }

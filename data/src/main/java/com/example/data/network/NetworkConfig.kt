@@ -1,4 +1,4 @@
-package com.example.data.remote.network
+package com.example.data.network
 
 object NetworkConfig {
     var clientId: String = "TWFU9lH4C_B1DBjA8PnL"

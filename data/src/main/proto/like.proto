@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "com.example.clean_architecture_study.datastore";
+option java_multiple_files = true;
+
+message Like {
+  string book_title = 1;
+  string book_author = 2;
+  bool is_liked = 3;
+  int32 like_count = 4;
+}
+
+message LikeList {
+  repeated Like likes = 1;
+}
