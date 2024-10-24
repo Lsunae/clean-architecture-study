@@ -1,10 +1,10 @@
 package com.example.domain.usecase.like
 
 import com.example.domain.model.Book
-import com.example.domain.repository.BookRepository
+import com.example.domain.repository.LikeRepository
 
-class GetLikeUseCase(private val repository: BookRepository) {
-    suspend fun getSearchBookResult(query: String, display: Int): ArrayList<Book>? {
-        return repository.searchBook(query, display)
+class GetLikeUseCase(private val repository: LikeRepository) {
+    suspend fun getLikeBook(): MutableList<Book> {
+        return repository.getLikeBook()
     }
 }
