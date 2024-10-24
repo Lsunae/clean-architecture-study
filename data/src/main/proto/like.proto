@@ -6,7 +6,8 @@ option java_multiple_files = true;
 message Like {
   string book_title = 1;
   string book_author = 2;
-  string like = 3;
+  bool is_liked = 3;
+  int32 like_count = 4;
 }
 
 message LikeList {
