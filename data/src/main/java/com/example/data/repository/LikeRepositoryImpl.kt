@@ -7,11 +7,11 @@ import javax.inject.Inject
 
 class LikeRepositoryImpl @Inject constructor(private val dataSource: LikeLocalDataSource) :
     LikeRepository {
-    override suspend fun setLikeBook(book: Book) {
+    override suspend fun setLike(like: Like) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getLikeBook(): MutableList<Book> {
+    override suspend fun getLikeList(): MutableList<Like> {
         TODO("Not yet implemented")
     }
 }
