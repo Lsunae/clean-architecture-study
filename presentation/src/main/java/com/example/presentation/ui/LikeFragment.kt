@@ -30,7 +30,7 @@ class LikeFragment : Fragment() {
 
     private fun setupView() {
         binding.apply {
-            includeActionbar.tvTitle.text = getString(R.string.like)
+            incTitle.tvTitle.text = getString(R.string.like)
         }
     }
 }
