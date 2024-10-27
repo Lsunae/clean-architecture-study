@@ -30,7 +30,7 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         this.context = parent.context
-        return ImageHolder(
+        return Holder(
             ItemBookBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -49,7 +49,7 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun settingPosition(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ImageHolder -> {
+            is Holder -> {
                 holder.bind(items[position])
             }
         }
@@ -59,7 +59,7 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return position
     }
 
-    inner class ImageHolder(private val binding: ItemBookBinding) :
+    inner class Holder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Book) {
