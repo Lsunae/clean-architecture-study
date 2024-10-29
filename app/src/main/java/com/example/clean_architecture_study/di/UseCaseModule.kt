@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.clean_architecture_study.di
 
 import com.example.domain.repository.BookRepository
 import com.example.domain.repository.LikeRepository

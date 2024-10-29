@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.clean_architecture_study.di
 
 import com.example.data.api.BookService
 import com.example.data.source.remote.BookRemoteDataSource
