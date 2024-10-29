@@ -1,8 +1,8 @@
 package com.example.data.di
 
-import com.example.data.remote.api.BookService
-import com.example.data.remote.network.NetworkConfig
-import com.example.data.remote.network.NetworkInterceptor
+import com.example.data.api.BookService
+import com.example.data.network.NetworkConfig
+import com.example.data.network.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
