@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
+import com.example.data.datastore.LikeList
 import com.example.data.source.local.LikeSerializer
 import dagger.Module
 import dagger.Provides
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 class DataStoreModule {
     @Provides
     @Singleton
-    fun provideLikeDataStore(@ApplicationContext context: Context): DataStore<Like> {
+    fun provideLikeDataStore(@ApplicationContext context: Context): DataStore<LikeList> {
         return DataStoreFactory.create(
             serializer = LikeSerializer,
             produceFile = { context.dataStoreFile("like.pb") }
