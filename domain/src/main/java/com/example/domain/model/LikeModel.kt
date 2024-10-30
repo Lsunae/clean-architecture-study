@@ -1,6 +1,6 @@
 package com.example.domain.model
 
-data class Like(
+data class LikeModel(
     val title: String?,
     val link: String?,
     val image: String?,
