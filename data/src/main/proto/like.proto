@@ -3,13 +3,13 @@ syntax = "proto3";
 option java_package = "com.example.data.datastore";
 option java_multiple_files = true;
 
-message Like {
-  string book_title = 1;
-  string book_author = 2;
-  bool is_liked = 3;
-  int32 like_count = 4;
-}
-
 message LikeList {
   repeated Like likes = 1;
+}
+
+message Like {
+  string title = 1;
+  string link = 2;
+  string image = 3;
+  string author = 4;
 }
