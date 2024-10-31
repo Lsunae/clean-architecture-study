@@ -26,8 +26,8 @@ class RepositoryModule {
     @Provides
     @ViewModelScoped
     fun provideLikeRepository(
-        likeRemoteDataSource: LikeLocalDataSource
+        likeLocalDataSource: LikeLocalDataSource
     ): LikeRepository {
-        return LikeRepositoryImpl(likeRemoteDataSource)
+        return LikeRepositoryImpl(likeLocalDataSource)
     }
 }
