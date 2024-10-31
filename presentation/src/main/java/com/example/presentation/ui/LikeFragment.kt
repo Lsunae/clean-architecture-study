@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLikeBinding
 import com.example.presentation.ui.adapter.BookRvAdapter
+import com.example.presentation.viewmodel.LikeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LikeFragment : Fragment() {
     private lateinit var binding: FragmentLikeBinding
+    private val likeViewModel: LikeViewModel by viewModels()
     private lateinit var bookAdapter: BookRvAdapter
 
     override fun onCreateView(
@@ -30,6 +34,9 @@ class LikeFragment : Fragment() {
 
         setupView()
         setAdapter()
+
+        getLikeList()
+        likeViewModel.getLikeList()
     }
 
     private fun setupView() {
@@ -43,6 +50,14 @@ class LikeFragment : Fragment() {
         binding.rvBook.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = bookAdapter
+        }
+    }
+
+    private fun getLikeList() {
+        likeViewModel.likeList.observe(viewLifecycleOwner) {
+            it?.let { item -> bookAdapter.addItems(item) }
+            binding.llLikeEmpty.isVisible = it.isNullOrEmpty()
+            binding.rvBook.isVisible = !it.isNullOrEmpty()
         }
     }
 }

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inc_title" />
 
     <LinearLayout
-        android:id="@+id/ll_search_empty"
+        android:id="@+id/ll_Like_empty"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
