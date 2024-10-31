@@ -13,12 +13,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/ll_book_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/iv_book"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_like"
         app:layout_constraintStart_toEndOf="@+id/iv_book"
         app:layout_constraintTop_toTopOf="@+id/iv_book">
 
@@ -34,5 +35,15 @@
             android:layout_marginTop="10dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_like"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ll_book_info"
+        app:layout_constraintTop_toTopOf="@+id/iv_book" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
