@@ -36,4 +36,11 @@ class LikeLocalDataSourceImpl @Inject constructor(@ApplicationContext private va
             it.toBuilder().addLikes(item.toProto()).build()
         }
     }
+
+    override suspend fun deleteLike(item: Book) {
+        dataStore.updateData { likeProto ->
+            val index = likeProto.likesList.indexOfFirst { it == item.toProto() }
+            likeProto.toBuilder().removeLikes(index).build()
+        }
+    }
 }
