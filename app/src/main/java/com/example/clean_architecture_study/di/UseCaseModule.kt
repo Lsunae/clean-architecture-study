@@ -2,8 +2,9 @@ package com.example.clean_architecture_study.di
 
 import com.example.domain.repository.BookRepository
 import com.example.domain.repository.LikeRepository
-import com.example.domain.usecase.like.GetLikeUseCase
 import com.example.domain.usecase.like.AddLikeUseCase
+import com.example.domain.usecase.like.DeleteLikeUseCase
+import com.example.domain.usecase.like.GetLikeUseCase
 import com.example.domain.usecase.search.GetSearchBookUseCase
 import dagger.Module
 import dagger.Provides
@@ -28,7 +29,13 @@ class UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideSetLikeUseCase(repository: LikeRepository): AddLikeUseCase {
+    fun provideAddLikeUseCase(repository: LikeRepository): AddLikeUseCase {
         return AddLikeUseCase(repository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideDeleteLikeUseCase(repository: LikeRepository): DeleteLikeUseCase {
+        return DeleteLikeUseCase(repository)
     }
 }
