@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Book
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemBookBinding
+import com.example.presentation.util.ClickListener
 import com.example.presentation.util.glideImageSet
 
 class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
-    private var items = arrayListOf<Book>()
+    private var items = mutableListOf<Book>()
+    private lateinit var onLikeClickListener: ClickListener.OnLikeClickListener
 
-    fun addItems(items: ArrayList<Book>) {
+    fun addItems(items: MutableList<Book>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -28,9 +30,13 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun setOnLikeClickListener(listener: ClickListener.OnLikeClickListener) {
+        this.onLikeClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         this.context = parent.context
-        return ImageHolder(
+        return Holder(
             ItemBookBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -49,7 +55,7 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun settingPosition(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ImageHolder -> {
+            is Holder -> {
                 holder.bind(items[position])
             }
         }
@@ -59,7 +65,7 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return position
     }
 
-    inner class ImageHolder(private val binding: ItemBookBinding) :
+    inner class Holder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Book) {
@@ -69,6 +75,17 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 tvTitle.text = item.title
                 tvAuthor.text = item.author
+
+                ivLike.setOnClickListener {
+                    onLikeClickListener.onLikeClick(
+                        Book(
+                            item.title,
+                            item.link,
+                            item.image,
+                            item.author
+                        ), !ivLike.isSelected
+                    )
+                }
             }
         }
     }

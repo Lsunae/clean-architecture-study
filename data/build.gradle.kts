@@ -1,3 +1,5 @@
+import com.google.protobuf.gradle.proto
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -33,6 +35,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    sourceSets {
+        getByName("main") {
+            proto {
+                srcDirs("src/main/proto")
+            }
+            java {
+                srcDir("build/generated/source/proto/main/java")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -56,20 +69,36 @@ dependencies {
 
     implementation(libs.datastore)
     implementation(libs.protobuf.javalite)
+    implementation(libs.protobuf.kotlin.lite)
 }
 
 kapt {
     correctErrorTypes = true
 }
 
+//protobuf {
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:3.21.12"
+//    }
+//    generateProtoTasks {
+//        all().forEach { task ->
+//            task.builtins {
+//                java {}
+//            }
+//        }
+//    }
+//}
+
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.21.12"
+        artifact = "com.google.protobuf:protoc:3.24.1"
     }
     generateProtoTasks {
         all().forEach { task ->
             task.builtins {
-                java {}
+                create("java") {
+                    option("lite")
+                }
             }
         }
     }

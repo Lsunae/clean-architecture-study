@@ -22,6 +22,7 @@ glide-compiler = "4.13.0"
 datastore = "0.9.1"
 protobuf = "0.9.1"
 protobuf-javalite = "3.21.12"
+protobuf-kotlin-lite = "3.24.1"
 datastoreCoreAndroid = "1.1.1"
 
 [libraries]
@@ -47,6 +48,7 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide-compiler" }
 datastore = { group = "androidx.datastore", name = "datastore", version.ref = "datastore" }
 protobuf-javalite = { group = "com.google.protobuf", name = "protobuf-javalite", version.ref = "protobuf-javalite" }
+protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "protobuf-kotlin-lite" }
 androidx-datastore-core-android = { group = "androidx.datastore", name = "datastore-core-android", version.ref = "datastoreCoreAndroid" }
 
 [plugins]

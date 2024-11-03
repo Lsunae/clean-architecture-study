@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.clean_architecture_study.di
 
 import com.example.data.repository.BookRepositoryImpl
 import com.example.data.repository.LikeRepositoryImpl
@@ -26,8 +26,8 @@ class RepositoryModule {
     @Provides
     @ViewModelScoped
     fun provideLikeRepository(
-        likeRemoteDataSource: LikeLocalDataSource
+        likeLocalDataSource: LikeLocalDataSource
     ): LikeRepository {
-        return LikeRepositoryImpl(likeRemoteDataSource)
+        return LikeRepositoryImpl(likeLocalDataSource)
     }
 }

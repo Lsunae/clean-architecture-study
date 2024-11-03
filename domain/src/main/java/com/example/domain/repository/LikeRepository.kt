@@ -1,6 +1,9 @@
 package com.example.domain.repository
 
+import com.example.domain.model.Book
+
 interface LikeRepository {
-    suspend fun setLike(like: Like)
-    suspend fun getLikeList(): MutableList<Like>
+    suspend fun getLikeList(): MutableList<Book>
+    suspend fun addLike(item: Book)
+    suspend fun deleteLike(item: Book)
 }
