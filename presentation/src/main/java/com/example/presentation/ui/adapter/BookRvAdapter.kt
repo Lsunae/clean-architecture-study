@@ -19,6 +19,15 @@ class BookRvAdapter(private var tabType: TabType) :
     private var items = mutableListOf<Book>()
     private lateinit var onLikeClickListener: ClickListener
     lateinit var searchFragment: WeakReference<SearchFragment>
+    private var currentRecyclerView: RecyclerView? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        currentRecyclerView = recyclerView
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        currentRecyclerView = null
+    }
 
     fun addItems(items: MutableList<Book>) {
         this.items.clear()
@@ -33,6 +42,14 @@ class BookRvAdapter(private var tabType: TabType) :
 
     fun notifyChange() {
         notifyDataSetChanged()
+    }
+
+    fun setLikeStatus(isSelected: Boolean, position: Int) {
+        if (currentRecyclerView != null) {
+            val holder: RecyclerView.ViewHolder? =
+                currentRecyclerView!!.findViewHolderForAdapterPosition(position)
+            if (holder is Holder) holder.setLikeStatus(isSelected)
+        }
     }
 
     fun setOnLikeClickListener(listener: ClickListener) {
@@ -61,7 +78,7 @@ class BookRvAdapter(private var tabType: TabType) :
     private fun settingPosition(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is Holder -> {
-                holder.bind(items[position])
+                holder.bind(items[position], position)
             }
         }
     }
@@ -73,7 +90,7 @@ class BookRvAdapter(private var tabType: TabType) :
     inner class Holder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Book) {
+        fun bind(item: Book, position: Int) {
             binding.apply {
                 if (!item.image.isNullOrEmpty()) ivBook.glideImageSet(item.image!!)
                 else ivBook.setImageResource(R.drawable.ic_error)
@@ -98,10 +115,16 @@ class BookRvAdapter(private var tabType: TabType) :
                             item.link,
                             item.image,
                             item.author
-                        ), ivLike.isSelected
+                        ),
+                        ivLike.isSelected,
+                        position
                     )
                 }
             }
+        }
+
+        fun setLikeStatus(isSelected: Boolean) {
+            binding.ivLike.isSelected = isSelected
         }
     }
 }

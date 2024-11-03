@@ -28,9 +28,10 @@ class LikeViewModel @Inject constructor(
         }
     }
 
-    fun setLike(item: Book, isSelected: Boolean) {
+    fun setLike(item: Book, isSelected: Boolean, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
-            if (isSelected) addLikeUseCase.addLike(item) else deleteLikeUseCase.deleteLike(item)
+            if (isSelected) onResult(addLikeUseCase.addLike(item))
+            else onResult(deleteLikeUseCase.deleteLike(item))
         }
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -59,8 +60,24 @@ class LikeFragment : Fragment() {
 
     private fun setClickListener() {
         bookAdapter.setOnLikeClickListener(object : ClickListener {
-            override fun onLikeClick(item: Book, isSelected: Boolean) {
-                likeViewModel.setLike(item, isSelected)
+            override fun onLikeClick(item: Book, isSelected: Boolean, position: Int) {
+                likeViewModel.setLike(item, isSelected) { isSuccess ->
+                    if (isSuccess) {
+                        val message = if (isSelected) R.string.like_add else R.string.like_delete
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(message),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        bookAdapter.setLikeStatus(!isSelected, position)
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.like_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         })
     }
