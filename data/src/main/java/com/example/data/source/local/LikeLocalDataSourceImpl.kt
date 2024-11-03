@@ -26,7 +26,7 @@ class LikeLocalDataSourceImpl @Inject constructor(@ApplicationContext private va
     override suspend fun getLikeList(): MutableList<Book> {
         val likeList = mutableListOf<Book>()
         context.likeDataStore.data.first().likesList.map {
-            likeList.add(Book(it.title, it.image, it.author, it.link))
+            likeList.add(Book(it.title, it.link, it.image, it.author))
         }
         return likeList
     }
