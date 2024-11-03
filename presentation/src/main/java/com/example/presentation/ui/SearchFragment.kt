@@ -17,6 +17,7 @@ import com.example.presentation.util.TabType
 import com.example.presentation.viewmodel.LikeViewModel
 import com.example.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.ref.WeakReference
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -39,6 +40,9 @@ class SearchFragment : Fragment() {
 
         setupView()
         setAdapter()
+
+        bookAdapter.searchFragment = WeakReference(this)
+
         setClickListener()
         setBookList()
     }

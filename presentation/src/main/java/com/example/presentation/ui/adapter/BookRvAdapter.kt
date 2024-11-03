@@ -7,15 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Book
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemBookBinding
+import com.example.presentation.ui.SearchFragment
 import com.example.presentation.util.ClickListener
 import com.example.presentation.util.TabType
 import com.example.presentation.util.glideImageSet
+import java.lang.ref.WeakReference
 
 class BookRvAdapter(private var tabType: TabType) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
     private var items = mutableListOf<Book>()
     private lateinit var onLikeClickListener: ClickListener
+    lateinit var searchFragment: WeakReference<SearchFragment>
 
     fun addItems(items: MutableList<Book>) {
         this.items.clear()
