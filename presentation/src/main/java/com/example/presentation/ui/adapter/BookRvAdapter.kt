@@ -13,7 +13,7 @@ import com.example.presentation.util.glideImageSet
 class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
     private var items = mutableListOf<Book>()
-    private lateinit var onLikeClickListener: ClickListener.OnLikeClickListener
+    private lateinit var onLikeClickListener: ClickListener
 
     fun addItems(items: MutableList<Book>) {
         this.items.clear()
@@ -30,7 +30,7 @@ class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnLikeClickListener(listener: ClickListener.OnLikeClickListener) {
+    fun setOnLikeClickListener(listener: ClickListener) {
         this.onLikeClickListener = listener
     }
 

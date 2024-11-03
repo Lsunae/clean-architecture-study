@@ -61,7 +61,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setClickListener() {
-        bookAdapter.setOnLikeClickListener(object : ClickListener.OnLikeClickListener {
+        bookAdapter.setOnLikeClickListener(object : ClickListener {
             override fun onLikeClick(item: Book, isSelected: Boolean) {
                 likeViewModel.setLike(item, isSelected)
             }
