@@ -1,6 +1,7 @@
 package com.example.presentation.ui
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.presentation.databinding.FragmentSearchBinding
 import com.example.presentation.ui.adapter.BookRvAdapter
 import com.example.presentation.util.ClickListener
 import com.example.presentation.util.TabType
+import com.example.presentation.util.hideKeyboard
 import com.example.presentation.viewmodel.LikeViewModel
 import com.example.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,8 +56,13 @@ class SearchFragment : Fragment() {
         binding.apply {
             incTitle.tvTitle.text = getString(R.string.search)
             ivSearch.setOnClickListener {
-                val query = etSearch.text.toString()
-                if (query.isNotEmpty()) searchViewModel.getSearchList(query, 10)
+                searchBook()
+            }
+            etSearch.setOnKeyListener { v, keyCode, event ->
+                if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    searchBook()
+                }
+                false
             }
         }
     }
@@ -90,6 +97,12 @@ class SearchFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun searchBook() {
+        val query = binding.etSearch.text.toString()
+        if (query.isNotEmpty()) searchViewModel.getSearchList(query, 10)
+        binding.etSearch.hideKeyboard(requireContext())
     }
 
     private fun setBookList() {
