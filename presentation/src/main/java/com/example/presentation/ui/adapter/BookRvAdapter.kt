@@ -81,14 +81,24 @@ class BookRvAdapter(private var tabType: TabType) :
                 tvTitle.text = item.title
                 tvAuthor.text = item.author
 
+                if (tabType == TabType.LIKE) {
+                    ivLike.isSelected = true
+                } else {
+                    ivLike.isSelected =
+                        searchFragment.get() != null && !searchFragment.get()!!.getLikeList()
+                            .isNullOrEmpty() && searchFragment.get()!!.getLikeList()!!
+                            .contains(item)
+                }
+
                 ivLike.setOnClickListener {
+                    ivLike.isSelected = !ivLike.isSelected
                     onLikeClickListener.onLikeClick(
                         Book(
                             item.title,
                             item.link,
                             item.image,
                             item.author
-                        ), !ivLike.isSelected
+                        ), ivLike.isSelected
                     )
                 }
             }

@@ -45,6 +45,8 @@ class SearchFragment : Fragment() {
 
         setClickListener()
         setBookList()
+
+        likeViewModel.getLikeList()
     }
 
     private fun setupView() {
@@ -79,5 +81,9 @@ class SearchFragment : Fragment() {
             binding.llSearchEmpty.isVisible = it.isNullOrEmpty()
             binding.rvBook.isVisible = !it.isNullOrEmpty()
         }
+    }
+
+    fun getLikeList(): MutableList<Book>? {
+        return likeViewModel.likeList.value
     }
 }
