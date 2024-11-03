@@ -8,9 +8,11 @@ import com.example.domain.model.Book
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemBookBinding
 import com.example.presentation.util.ClickListener
+import com.example.presentation.util.TabType
 import com.example.presentation.util.glideImageSet
 
-class BookRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BookRvAdapter(private var tabType: TabType) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
     private var items = mutableListOf<Book>()
     private lateinit var onLikeClickListener: ClickListener

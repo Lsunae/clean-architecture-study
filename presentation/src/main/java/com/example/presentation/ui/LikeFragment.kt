@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLikeBinding
 import com.example.presentation.ui.adapter.BookRvAdapter
+import com.example.presentation.util.TabType
 import com.example.presentation.viewmodel.LikeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +47,7 @@ class LikeFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        bookAdapter = BookRvAdapter()
+        bookAdapter = BookRvAdapter(TabType.LIKE)
         binding.rvBook.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = bookAdapter

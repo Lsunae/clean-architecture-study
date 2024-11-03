@@ -13,6 +13,7 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentSearchBinding
 import com.example.presentation.ui.adapter.BookRvAdapter
 import com.example.presentation.util.ClickListener
+import com.example.presentation.util.TabType
 import com.example.presentation.viewmodel.LikeViewModel
 import com.example.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,7 +54,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        bookAdapter = BookRvAdapter()
+        bookAdapter = BookRvAdapter(TabType.SEARCH)
         binding.rvBook.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = bookAdapter
@@ -70,7 +71,7 @@ class SearchFragment : Fragment() {
 
     private fun setBookList() {
         searchViewModel.searchList.observe(viewLifecycleOwner) {
-            it?.let { item -> bookAdapter.addItems(item) }
+            it?.let { items -> bookAdapter.addItems(items) }
             binding.llSearchEmpty.isVisible = it.isNullOrEmpty()
             binding.rvBook.isVisible = !it.isNullOrEmpty()
         }
