@@ -1,5 +1,7 @@
 package com.example.presentation.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -76,7 +78,12 @@ class SearchFragment : Fragment() {
     }
 
     private fun setClickListener() {
-        bookAdapter.setOnLikeClickListener(object : ClickListener {
+        bookAdapter.setOnClickListener(object : ClickListener {
+            override fun onItemClick(item: Book) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.link))
+                startActivity(intent)
+            }
+
             override fun onLikeClick(item: Book, isSelected: Boolean, position: Int) {
                 likeViewModel.setLike(item, isSelected) { isSuccess ->
                     if (isSuccess) {

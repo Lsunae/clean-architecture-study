@@ -17,7 +17,7 @@ class BookRvAdapter(private var tabType: TabType) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
     private var items = mutableListOf<Book>()
-    private lateinit var onLikeClickListener: ClickListener
+    private lateinit var onClickListener: ClickListener
     lateinit var searchFragment: WeakReference<SearchFragment>
     private var currentRecyclerView: RecyclerView? = null
 
@@ -52,8 +52,8 @@ class BookRvAdapter(private var tabType: TabType) :
         }
     }
 
-    fun setOnLikeClickListener(listener: ClickListener) {
-        this.onLikeClickListener = listener
+    fun setOnClickListener(listener: ClickListener) {
+        this.onClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -109,7 +109,7 @@ class BookRvAdapter(private var tabType: TabType) :
 
                 ivLike.setOnClickListener {
                     ivLike.isSelected = !ivLike.isSelected
-                    onLikeClickListener.onLikeClick(
+                    onClickListener.onLikeClick(
                         Book(
                             item.title,
                             item.link,
@@ -119,6 +119,10 @@ class BookRvAdapter(private var tabType: TabType) :
                         ivLike.isSelected,
                         position
                     )
+                }
+
+                clBook.setOnClickListener {
+                    onClickListener.onItemClick(item)
                 }
             }
         }
