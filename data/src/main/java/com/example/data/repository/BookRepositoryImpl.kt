@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(private val dataSource: BookRemoteDataSource) :
     BookRepository {
-    override suspend fun searchBook(query: String, display: Int): ArrayList<Book>? {
+    override suspend fun searchBook(query: String, display: Int): MutableList<Book>? {
         return try {
             val response = dataSource.getSearchBooks(query, display)
             if (response.isSuccessful) {

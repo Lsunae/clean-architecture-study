@@ -4,8 +4,8 @@ import com.example.data.model.SearchResultResponse
 import com.example.domain.model.Book
 
 object BookMapper {
-    fun mapperToBook(response: SearchResultResponse): ArrayList<Book> {
-        val bookList = arrayListOf<Book>()
+    fun mapperToBook(response: SearchResultResponse): MutableList<Book> {
+        val bookList = mutableListOf<Book>()
         response.items?.forEach {
             bookList.add(
                 Book(

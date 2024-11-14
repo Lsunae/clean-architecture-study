@@ -12,8 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val useCase: GetSearchBookUseCase) : ViewModel() {
-    private val _searchList = MutableLiveData<ArrayList<Book>>()
-    val searchList: LiveData<ArrayList<Book>> get() = _searchList
+    private val _searchList = MutableLiveData<MutableList<Book>>()
+    val searchList: LiveData<MutableList<Book>> get() = _searchList
 
     fun getSearchList(query: String, display: Int) {
         viewModelScope.launch {

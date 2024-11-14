@@ -8,12 +8,6 @@ import javax.inject.Inject
 class LikeRepositoryImpl @Inject constructor(private val dataSource: LikeLocalDataSource) :
     LikeRepository {
     override suspend fun getLikeList(): MutableList<Book> = dataSource.getLikeList()
-
-    override suspend fun addLike(item: Book) {
-        dataSource.addLike(item)
-    }
-
-    override suspend fun deleteLike(item: Book) {
-        dataSource.deleteLike(item)
-    }
+    override suspend fun addLike(item: Book): Boolean = dataSource.addLike(item)
+    override suspend fun deleteLike(item: Book): Boolean = dataSource.deleteLike(item)
 }

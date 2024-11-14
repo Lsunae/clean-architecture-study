@@ -1,6 +1,7 @@
 package com.example.data.source.local
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import com.example.data.datastore.Like
@@ -26,21 +27,35 @@ class LikeLocalDataSourceImpl @Inject constructor(@ApplicationContext private va
     override suspend fun getLikeList(): MutableList<Book> {
         val likeList = mutableListOf<Book>()
         context.likeDataStore.data.first().likesList.map {
-            likeList.add(Book(it.title, it.image, it.author, it.link))
+            likeList.add(Book(it.title, it.link, it.image, it.author))
         }
         return likeList
     }
 
-    override suspend fun addLike(item: Book) {
-        dataStore.updateData {
-            it.toBuilder().addLikes(item.toProto()).build()
+    override suspend fun addLike(item: Book): Boolean {
+        return try {
+            dataStore.updateData {
+                it.toBuilder().addLikes(item.toProto()).build()
+            }
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("[${javaClass.name}]", "addLike Exception message: ${e.message}")
+            false
         }
     }
 
-    override suspend fun deleteLike(item: Book) {
-        dataStore.updateData { likeProto ->
-            val index = likeProto.likesList.indexOfFirst { it == item.toProto() }
-            likeProto.toBuilder().removeLikes(index).build()
+    override suspend fun deleteLike(item: Book): Boolean {
+        return try {
+            dataStore.updateData { likeProto ->
+                val index = likeProto.likesList.indexOfFirst { it == item.toProto() }
+                likeProto.toBuilder().removeLikes(index).build()
+            }
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("[${javaClass.name}]", "deleteLike Exception message: ${e.message}")
+            false
         }
     }
 }
